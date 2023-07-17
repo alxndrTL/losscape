@@ -16,6 +16,6 @@ def compute_loss(model, train_loader_unshuffled, criterion = None, num_batches:i
         if batch_idx + 1 >= num_batches:
             break
     
-    loss = loss / num_batches
+    loss = loss / (batch_idx + 1)
 
     return loss
