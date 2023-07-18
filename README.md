@@ -19,7 +19,7 @@ pip install losscape
 ```
 
 ## Usage ⚙️
-Here's a quick example on how to use Losscape:
+Here's a quick example on how to use `losscape`:
 
 
 ```
