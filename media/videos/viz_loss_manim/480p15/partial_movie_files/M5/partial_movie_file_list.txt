@@ -1,4 +1,0 @@
-# This file is used internally by FFMPEG.
-file 'file:/home/alex/Bureau/paysage/media/videos/viz_loss_manim/480p15/partial_movie_files/M5/4282469824_64730565_2946648939.mp4'
-file 'file:/home/alex/Bureau/paysage/media/videos/viz_loss_manim/480p15/partial_movie_files/M5/794928923_3776593507_1145681850.mp4'
-file 'file:/home/alex/Bureau/paysage/media/videos/viz_loss_manim/480p15/partial_movie_files/M5/1230085348_3533051148_2258548573.mp4'
