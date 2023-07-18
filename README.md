@@ -36,8 +36,8 @@ create_2D_losscape(model, train_loader, output_vtp=True)
 Typical results :
 
 <p float="left">
-  <img src="docs/1d_landscape.png" width="500" />
-  <img src="docs/2d_landscape.png" width="500" /> 
+  <img src="docs/1d_landscape.png" width="300" />
+  <img src="docs/2d_landscape.png" width="300" /> 
 </p>
 
 
