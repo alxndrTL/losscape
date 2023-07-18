@@ -36,6 +36,7 @@ create_2D_losscape(model, train_loader, output_vtp=True)
 Typical results :
 
 
+
 To visualize the loss landscape in 3D, use the `.vtp` file created by the library and simply drag-and-drop it in [a VTK viewer](https://kitware.github.io/itk-vtk-viewer/app/) :
 
 ## Documentation 📖
