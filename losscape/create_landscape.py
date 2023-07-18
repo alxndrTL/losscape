@@ -5,8 +5,8 @@ import numpy as np
 from scipy import interpolate
 import matplotlib.pyplot as plt
 
-from malib.compute_loss import compute_loss
-from malib.create_directions import create_random_direction, create_random_directions
+from losscape.compute_loss import compute_loss
+from losscape.create_directions import create_random_direction, create_random_directions
 
 #todo : plot anim la traj d'une optim avec PCA
 #todo : losscape avec le test loss
