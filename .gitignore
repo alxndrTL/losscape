@@ -1,2 +1,11 @@
+# Python
 __pycache__/
 *.py[cod]
+
+# setuptools
+dist/
+build/
+*.egg-info/
+
+# Test
+.pytest_cache/
