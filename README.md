@@ -35,6 +35,11 @@ create_2D_losscape(model, train_loader, output_vtp=True)
 
 Typical results :
 
+<p float="left">
+  <img src="docs/1d_losscape.png" width="500" />
+  <img src="docs/2d_landscape.png" width="500" /> 
+</p>
+
 
 
 To visualize the loss landscape in 3D, use the `.vtp` file created by the library and simply drag-and-drop it in [a VTK viewer](https://kitware.github.io/itk-vtk-viewer/app/) :
