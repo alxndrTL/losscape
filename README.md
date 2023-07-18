@@ -51,4 +51,4 @@ Here are a couple of additions I'm planning to add in the near future:
 ## Contact 📞
 Feel free to open an issue if you find a bug or have any suggestions to improve the library. Feedback is much appreciated!
 
-# Enjoy your visualization journey with `losscape`! 🎉
+# Enjoy your visualization journey with `losscape` ! 🎉
