@@ -1,4 +1,4 @@
-# loss + landscape = losscape 🌄
+# loss + landscape = `losscape` 🌄
 
 This is the official repository for `losscape`, a lightweight, modular, and straightforward Python library that empowers you to visualize the loss landscape of your neural networks, as in [Visualizing the Loss Landscape of Neural Nets](https://arxiv.org/abs/1712.09913).
 
