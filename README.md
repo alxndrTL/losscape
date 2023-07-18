@@ -1,4 +1,4 @@
-# loss + landscape = losscape 🌄
+# loss + landscape = `losscape` 🌄
 
 This is the official repository for `losscape`, a lightweight, modular, and straightforward Python library that empowers you to visualize the loss landscape of your neural networks, as in [Visualizing the Loss Landscape of Neural Nets](https://arxiv.org/abs/1712.09913).
 
@@ -41,6 +41,11 @@ To visualize the loss landscape in 3D, use the `.vtp` file created by the librar
 
 ## Documentation 📖
 For more details, please refer to the documentation. It provides a global overview on how `losscape` works, and on how you can leverage it with your own model.
+
+## References 📚
+- [Visualizing the Loss Landscape of Neural Nets](https://arxiv.org/abs/1712.09913)
+- [Visualizing the Loss Landscape of Winning Lottery Tickets](https://arxiv.org/abs/2112.08538)
+
 
 ## Roadmap 🚀
 Here are a couple of additions I'm planning to add in the near future:
