@@ -42,6 +42,12 @@ To visualize the loss landscape in 3D, use the `.vtp` file created by the librar
 ## Documentation 📖
 For more details, please refer to the documentation. It provides a global overview on how `losscape` works, and on how you can leverage it with your own model.
 
+## Roadmap 🚀
+Here are a couple of additions I'm planning to add in the near future:
+
+- 📈 Validation Loss Landscape: I'm working on the ability to visualize the validation loss landscape, in addition to the training loss landscape.
+- 🛤 Optimizer Path Visualization: Future updates will include the ability to visualize the path of gradient descent (or any other optimizer) on these landscapes using PCA.
+
 ## Contact 📞
 Feel free to open an issue if you find a bug or have any suggestions to improve the library. Feedback is much appreciated!
 
