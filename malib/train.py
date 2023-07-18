@@ -6,18 +6,31 @@ import torch.nn.functional as F
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
-def train(model, train_loader, optimizer:torch.optim = None, criterion = None, epochs:int = 50, verbose:int = 1):
-    #verbose = 0 : print seulement a la fin
-    #verbose = 1 : print 0%, 25%, 50%, 100%
-    #verbose = 2 : print a chaque epoch
+def train(model, train_loader, optimizer:torch.optim = None, criterion = F.cross_entropy, epochs:int = 50, verbose:int = 1):
+    """
+    Train the provided model.
+
+    Parameters
+    ----------
+    model : the torch model which will be trained.
+    train_loader : the torch dataloader which gives training data.
+    optimizer : the optimizer used for training (should follow the same API as torch optimizers).(default to Adam)
+    criterion : the criterion used to compute the loss. (default to F.cross_entropy)
+    epochs : the number of epochs (default to 50)
+    verbose : controls the printing during the training. (0 = print at the end only, 1 = print at 0,25,50,100%, 2 = print every epoch). (default to 1)
+
+    Returns
+    ----------
+
+    """
 
     model.to(device)
-    
-    if optimizer is None:
-        optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
 
     if criterion is None:
         criterion = F.cross_entropy
+    
+    if optimizer is None:
+        optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
 
     for epoch in range(1, epochs+1):
         for batch_idx, (Xb, Yb) in enumerate(train_loader):

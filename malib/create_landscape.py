@@ -12,12 +12,29 @@ from malib.create_directions import create_random_direction, create_random_direc
 #todo : losscape avec le test loss
 #todo pour la lib : possiblité de tout foutre dans un fichier, et il fait les exps automatiquement ? (genre on met model + dataloader + optim + loss et il loop sur les models + optims)
 
-#todo : doc
-#todo : examples ?
-
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
-def create_1D_losscape(model, train_loader_unshuffled, direction=None, criterion = None, num_batches:int = 8, save_only:bool = False, output_path:str = '1d_losscape.png', x_min:float=-1, x_max:float=1, num_points:int=50):
+def create_1D_losscape(model, train_loader_unshuffled, direction=None, criterion = None, num_batches:int = 8, save_only:bool = False, output_path:str = '1d_losscape.png', x_min:float=-1., x_max:float=1., num_points:int=50):
+    """
+    Create a 1D losscape of the given model.
+
+    Parameters
+    ----------
+    model : the torch model which will be used to create the losscape.
+    train_loader_unshuffled : the torch dataloader. It is supposed to be fixed so that all the calls to this function will use the same data.
+    optimizer : the optimizer used for training (should follow the same API as torch optimizers).(default to Adam)
+    criterion : the criterion used to compute the loss. (default to F.cross_entropy)
+    num_batches : number of batches to evaluate the model with. (default to 8)
+    save_only : only save the plot and don't display it. (default to False)
+    output_path : path where the plot will be saved. (default to '1d_losscape.png')
+    x_min : min x value (that multiply the sampled direction). (default to -1.) 
+    x_max : max x value (that multiply the sampled direction). (default to 1.)
+    num_points : number of points to evaluate the loss, from x_min to x_max. (default to 50)
+
+    Returns
+    ----------
+
+    """
 
     model.to(device)
 
@@ -45,7 +62,30 @@ def create_1D_losscape(model, train_loader_unshuffled, direction=None, criterion
     
     plt.clf()
 
-def create_2D_losscape(model, train_loader_unshuffled, directions=None, criterion = None, num_batches:int = 8, save_only:bool = False, output_path:str = '2d_losscape.png', output_vtp:bool = False, x_min:float=-1, x_max:float=1, y_min:float=-1, y_max:float=1, num_points:int=50):
+def create_2D_losscape(model, train_loader_unshuffled, directions=None, criterion = None, num_batches:int = 8, save_only:bool = False, output_path:str = '2d_losscape.png', output_vtp:bool = False, x_min:float=-1., x_max:float=1., y_min:float=-1., y_max:float=1., num_points:int=50):
+    """
+    Create a 2D losscape of the given model.
+
+    Parameters
+    ----------
+    model : the torch model which will be used to create the losscape.
+    train_loader_unshuffled : the torch dataloader. It is supposed to be fixed so that all the calls to this function will use the same data.
+    optimizer : the optimizer used for training (should follow the same API as torch optimizers).(default to Adam)
+    criterion : the criterion used to compute the loss. (default to F.cross_entropy)
+    num_batches : number of batches to evaluate the model with. (default to 8)
+    save_only : only save the plot and don't display it. (default to False)
+    output_path : path where the plot will be saved. (default to '1d_losscape.png')
+    output_vpt : whether or not to also create a .vtp file, used to 3D visualize the losscape. (default to False)
+    x_min : min x value (that multiply the first sampled direction). (default to -1.) 
+    x_max : max x value (that multiply the first sampled direction). (default to 1.)
+    y_min : min x value (that multiply the second sampled direction). (default to -1.) 
+    y_max : max x value (that multiply the second sampled direction). (default to 1.)
+    num_points : number of points to evaluate the loss, from x_min to x_max and y_min to y_max. (default to 50)
+
+    Returns
+    ----------
+
+    """
 
     model.to(device)
 
