@@ -6,7 +6,7 @@ import torch.nn.functional as F
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
-def train(model, train_loader, optimizer:torch.optim = None, criterion = F.cross_entropy, epochs:int = 50, verbose:int = 1):
+def train(model, train_loader, optimizer:torch.optim = None, criterion = F.cross_entropy, epochs:int = 50, decay_lr_epochs:int = 20, verbose:int = 1):
     """
     Train the provided model.
 
@@ -17,6 +17,7 @@ def train(model, train_loader, optimizer:torch.optim = None, criterion = F.cross
     optimizer : the optimizer used for training (should follow the same API as torch optimizers).(default to Adam)
     criterion : the criterion used to compute the loss. (default to F.cross_entropy)
     epochs : the number of epochs (default to 50)
+    decay_lr_epochs : the lr will be divided by 10 every decay_lr_epochs epochs (default to 20)
     verbose : controls the printing during the training. (0 = print at the end only, 1 = print at 0,25,50,100%, 2 = print every epoch). (default to 1)
 
     Returns
@@ -31,6 +32,8 @@ def train(model, train_loader, optimizer:torch.optim = None, criterion = F.cross
     
     if optimizer is None:
         optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
+        
+    lr = optimizer.param_groups[0]['lr']
 
     for epoch in range(1, epochs+1):
         for batch_idx, (Xb, Yb) in enumerate(train_loader):
@@ -41,6 +44,11 @@ def train(model, train_loader, optimizer:torch.optim = None, criterion = F.cross
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
+
+        if epoch%decay_lr_epochs == 0:
+            lr = 0.1 * lr
+            for param_group in optimizer.param_groups:
+                param_group['lr'] = lr
 
         if verbose == 2:
             print("Epoch {}/{}. Loss={}".format(epoch, epochs, loss.item()))

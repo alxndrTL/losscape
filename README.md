@@ -1,13 +1,13 @@
 # loss + landscape = `losscape` 🌄
 
-This is the official repository for `losscape`, a lightweight, modular, and straightforward Python library that empowers you to visualize the loss landscape of your neural networks, as in [Visualizing the Loss Landscape of Neural Nets](https://arxiv.org/abs/1712.09913).
+This is `losscape`, a lightweight, modular, and straightforward Python library that empowers you to visualize the loss landscape of your neural networks, as in [Visualizing the Loss Landscape of Neural Nets](https://arxiv.org/abs/1712.09913).
 
-`losscape` is designed as a plug-and-play extension for your existing PyTorch models. It boasts its simplicity, modularity, and lightning-fast rendering speed over other comparable libraries.
+`losscape` is designed as a plug-and-play extension for your existing PyTorch models. It boasts its simplicity, modularity, and fast rendering speed.
 
 ## Key Features ✨
 
 - 🏃 **Fast Rendering**: Leveraging PyTorch's `torch.no_grad()` feature and controlling the number of examples to compute the loss, `losscape` speeds up the visualization process dramatically, thus saving valuable wall time.
-- 📊 **Flexible Plotting**: Supports both 1D and 2D plotting options for your loss landscapes, giving you the power to choose based on your requirements and computational constraints.
+- 📊 **Flexible Plotting**: Supports both 2D and 3D plotting options for your loss landscapes, giving you the power to choose based on your requirements and computational constraints.
 - 🔌 **Plug and Play**: Easy to integrate with your existing PyTorch models. No substantial modifications to your codebase are needed!
 
 ## Installation 📦
@@ -36,14 +36,14 @@ create_2D_losscape(model, train_loader, output_vtp=True)
 Typical results :
 
 <p float="left" align="center">
-  <img src="docs/1d_landscape.png" width="400" />
-  <img src="docs/2d_landscape.png" width="400" /> 
+  <img src="https://github.com/Procuste34/losscape/blob/main/docs/1d_landscape.png?raw=true" width="400" />
+  <img src="https://github.com/Procuste34/losscape/blob/main/docs/2d_landscape.png?raw=true" width="400" /> 
 </p>
 
 To visualize the loss landscape in 3D, use the `.vtp` file created by the library and simply drag-and-drop it in [a VTK viewer](https://kitware.github.io/itk-vtk-viewer/app/) :
 
 <p align="center">
-  <img src="docs/3d_landscape.png" width="300" />
+  <img src="https://github.com/Procuste34/losscape/blob/main/docs/3d_landscape.png?raw=true" width="300" />
 </p>
 
 ## Documentation 📖
