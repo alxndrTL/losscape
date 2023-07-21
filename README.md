@@ -48,7 +48,7 @@ To visualize the loss landscape in 3D, use the `.vtp` file created by the librar
 
 ## Documentation 📖
 For more details, please refer to the documentation. It provides a global overview on how `losscape` works, and on how you can leverage it with your own model.
-(to be written).
+(to be written : for now you can refer to the code, its simple enough to understand the structure of the library, and you can spin up using the juypter notebook example, all available on the Github repo).
 
 ## References 📚
 - [Visualizing the Loss Landscape of Neural Nets](https://arxiv.org/abs/1712.09913)

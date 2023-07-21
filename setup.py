@@ -6,7 +6,7 @@ desc = (current_dir / "README.md").read_text()
 
 setup(
     name='losscape',
-    version='1.4.1',
+    version='1.4.2',
     url='https://github.com/Procuste34/losscape',
     author='Alexandre TL',
     author_email='alexandretl3434@gmail.com',
