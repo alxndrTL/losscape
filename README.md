@@ -12,7 +12,7 @@ This is `losscape`, a lightweight, modular, and straightforward Python library t
 
 ## Installation 📦
 
-You can install `losscape` via pip:
+You can install `losscape` with pip:
 
 ```
 pip install losscape
@@ -40,7 +40,7 @@ Typical results :
   <img src="https://github.com/Procuste34/losscape/blob/main/docs/2d_landscape.png?raw=true" width="400" /> 
 </p>
 
-To visualize the loss landscape in 3D, use the `.vtp` file created by the library and simply drag-and-drop it in [a VTK viewer](https://kitware.github.io/itk-vtk-viewer/app/) :
+To visualize the loss landscape in 3D, use the `.vtp` file created by the library and simply drag-and-drop it in [an online VTK viewer](https://kitware.github.io/itk-vtk-viewer/app/) :
 
 <p align="center">
   <img src="https://github.com/Procuste34/losscape/blob/main/docs/3d_landscape.png?raw=true" width="300" />
