@@ -4,7 +4,7 @@ import torch.nn.functional as F
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
-def compute_loss(model, train_loader_unshuffled, criterion = F.cross_entropy, num_batches:int = 8):
+def compute_loss(model, train_loader_unshuffled, get_batch, criterion = F.cross_entropy, num_batches:int = 8):
     """
     Compute and return the loss over the first num_batches batches given by the train_loader_unshuffled, using the criterion provided.
 
@@ -26,17 +26,26 @@ def compute_loss(model, train_loader_unshuffled, criterion = F.cross_entropy, nu
 
     loss = 0
 
-    with torch.no_grad():
-        for batch_idx, (Xb, Yb) in enumerate(train_loader_unshuffled):
-            Xb, Yb = Xb.to(device), Yb.to(device)
+    if train_loader_unshuffled is not None:
+        with torch.no_grad():
+            for batch_idx, (Xb, Yb) in enumerate(train_loader_unshuffled):
+                Xb, Yb = Xb.to(device), Yb.to(device)
 
-            logits = model(Xb)
-            loss += criterion(logits, Yb).item()
+                logits = model(Xb)
+                loss += criterion(logits, Yb).item()
 
-            if batch_idx + 1 >= num_batches:
-                break
+                if batch_idx + 1 >= num_batches:
+                    break
     
-    loss = loss / (batch_idx + 1)
+        loss = loss / (batch_idx + 1)
+    else:
+        with torch.no_grad():
+            for _ in range(num_batches):
+                Xb, Yb = get_batch('train', 512)
+                logits, l = model(Xb, Yb)
+                loss += l.item()
+        
+        loss = loss / num_batches
 
     return loss
 

@@ -32,8 +32,6 @@ def train(model, train_loader, optimizer:torch.optim = None, criterion = F.cross
     
     if optimizer is None:
         optimizer = torch.optim.Adam(model.parameters(), lr=0.01)
-        
-    lr = optimizer.param_groups[0]['lr']
 
     for epoch in range(1, epochs+1):
         for batch_idx, (Xb, Yb) in enumerate(train_loader):
@@ -46,9 +44,16 @@ def train(model, train_loader, optimizer:torch.optim = None, criterion = F.cross
             optimizer.step()
 
         if epoch%decay_lr_epochs == 0:
-            lr = 0.1 * lr
             for param_group in optimizer.param_groups:
-                param_group['lr'] = lr
+                param_group['lr'] *= 0.1
+        
+        """
+        if int(epoch) == 150 or int(epoch) == 225 or int(epoch) == 275:
+            lr *= 0.1
+            for param_group in optimizer.param_groups:
+                param_group['lr'] *= 0.1
+        """
+
 
         if verbose == 2:
             print("Epoch {}/{}. Loss={}".format(epoch, epochs, loss.item()))
