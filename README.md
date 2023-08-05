@@ -1,5 +1,9 @@
 # loss + landscape = `losscape` 🌄
 
+<p align="center">
+  <img src="https://github.com/Procuste34/losscape/blob/main/docs/losscape.png?raw=true" width="1000" />
+</p>
+
 This is `losscape`, a lightweight, modular, and straightforward Python library that empowers you to visualize the loss landscape of your neural networks, as in [Visualizing the Loss Landscape of Neural Nets](https://arxiv.org/abs/1712.09913).
 
 `losscape` is designed as a plug-and-play extension for your existing PyTorch models. It boasts its simplicity, modularity, and fast rendering speed.
@@ -43,7 +47,7 @@ Typical results :
 To visualize the loss landscape in 3D, use the `.vtp` file created by the library and simply drag-and-drop it in [an online VTK viewer](https://kitware.github.io/itk-vtk-viewer/app/) :
 
 <p align="center">
-  <img src="https://github.com/Procuste34/losscape/blob/main/docs/3d_landscape.png?raw=true" width="300" />
+  <img src="https://github.com/Procuste34/losscape/blob/main/docs/resnet56_ns.png?raw=true" width="300" />
 </p>
 
 ## Documentation 📖
