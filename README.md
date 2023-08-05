@@ -50,6 +50,8 @@ To visualize the loss landscape in 3D, use the `.vtp` file created by the librar
   <img src="https://github.com/Procuste34/losscape/blob/main/docs/resnet56_ns.png?raw=true" width="300" />
 </p>
 
+(this loss landscape is obtained with ResNet-56 without residual connections)
+
 ## Documentation 📖
 For more details, please refer to the documentation. It provides a global overview on how `losscape` works, and on how you can leverage it with your own model.
 (to be written : for now you can refer to the code, its simple enough to understand the structure of the library, and you can spin up using the juypter notebook example, all available on the Github repo).
@@ -64,6 +66,7 @@ Here are a couple of additions I'm planning to add in the near future:
 
 - 📈 Validation Loss Landscape: I'm working on the ability to visualize the validation loss landscape, in addition to the training loss landscape.
 - 🛤 Optimizer Path Visualization: Future updates will include the ability to visualize the path of gradient descent (or any other optimizer) on these landscapes using PCA.
+- Visualize Transformer loss landscapes in the language modeling regime
 - further study the impact of the number of batches used for creating a visualization. (kind of linked to the first point)
 
 ## Contact 📞
