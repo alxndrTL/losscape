@@ -28,7 +28,7 @@ def compute_loss(model, train_loader_unshuffled, get_batch, criterion = F.cross_
 
     if train_loader_unshuffled is not None:
         with torch.no_grad():
-            loss = closure(train_loader_unshuffled,num_batches)
+            loss, batch_idx = closure(train_loader_unshuffled,num_batches)
     
         loss = loss / (batch_idx + 1)
     else:
