@@ -16,7 +16,7 @@ from losscape.create_directions import create_random_direction, create_random_di
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
-def create_2D_losscape(model, train_loader_unshuffled=None, get_batch=None, direction=None, criterion = None, num_batches:int = 8, save_only:bool = False, output_path:str = '', x_min:float=-1., x_max:float=1., num_points:int=50):
+def create_2D_losscape(model, train_loader_unshuffled=None, get_batch=None, direction=None, criterion = None, closure = None, num_batches:int = 8, save_only:bool = False, output_path:str = '', x_min:float=-1., x_max:float=1., num_points:int=50):
     """
     Create a 2D losscape of the given model.
 
@@ -32,6 +32,7 @@ def create_2D_losscape(model, train_loader_unshuffled=None, get_batch=None, dire
     x_min : min x value (that multiply the sampled direction). (default to -1.) 
     x_max : max x value (that multiply the sampled direction). (default to 1.)
     num_points : number of points to evaluate the loss, from x_min to x_max. (default to 50)
+    closure: Here you can provide a custom closure that will be used to compute the loss. One common use case is if your model provides non standard outputs or non standard inputs
 
     Returns
     ----------
@@ -53,7 +54,7 @@ def create_2D_losscape(model, train_loader_unshuffled=None, get_batch=None, dire
     for x in coords:
         _set_weights(model, init_weights, direction, x)
 
-        loss = compute_loss(model, train_loader_unshuffled, get_batch, criterion, num_batches)
+        loss = compute_loss(model, train_loader_unshuffled, get_batch, criterion, num_batches, closure = closure)
         losses.append(loss)
 
     _reset_weights(model, init_weights)
