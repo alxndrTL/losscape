@@ -16,7 +16,7 @@ from losscape.create_directions import create_random_direction, create_random_di
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
-def create_2D_losscape(model, train_loader_unshuffled=None, get_batch=None, direction=None, criterion = None, num_batches:int = 8, save_only:bool = False, output_path:str = '', x_min:float=-1., x_max:float=1., num_points:int=50):
+def create_2D_losscape(model, train_loader_unshuffled=None, get_batch=None, direction=None, criterion = None, closure = None, num_batches:int = 8, save_only:bool = False, output_path:str = '', x_min:float=-1., x_max:float=1., num_points:int=50):
     """
     Create a 2D losscape of the given model.
 
@@ -26,6 +26,7 @@ def create_2D_losscape(model, train_loader_unshuffled=None, get_batch=None, dire
     train_loader_unshuffled : the torch dataloader. It is supposed to be fixed so that all the calls to this function will use the same data.
     optimizer : the optimizer used for training (should follow the same API as torch optimizers).(default to Adam)
     criterion : the criterion used to compute the loss. (default to F.cross_entropy)
+    closure : an optional closure that will replace the default compute_loss internals
     num_batches : number of batches to evaluate the model with. (default to 8)
     save_only : only save the plot and don't display it. (default to False)
     output_path : path where the plot will be saved. (default to '2d_losscape.png')
@@ -53,7 +54,7 @@ def create_2D_losscape(model, train_loader_unshuffled=None, get_batch=None, dire
     for x in coords:
         _set_weights(model, init_weights, direction, x)
 
-        loss = compute_loss(model, train_loader_unshuffled, get_batch, criterion, num_batches)
+        loss = compute_loss(model, train_loader_unshuffled, get_batch, criterion, num_batches, closure = closure)
         losses.append(loss)
 
     _reset_weights(model, init_weights)
@@ -68,7 +69,7 @@ def create_2D_losscape(model, train_loader_unshuffled=None, get_batch=None, dire
 
     return coords, losses
 
-def create_3D_losscape(model, train_loader_unshuffled=None, get_batch=None, directions=None, criterion = None, num_batches:int = 8, save_only:bool = False, output_path:str = '', output_vtp:bool = True, output_h5:bool = True, x_min:float=-1., x_max:float=1., y_min:float=-1., y_max:float=1., num_points:int=50):
+def create_3D_losscape(model, train_loader_unshuffled=None, get_batch=None, directions=None, criterion = None, closure = None, num_batches:int = 8, save_only:bool = False, output_path:str = '', output_vtp:bool = True, output_h5:bool = True, x_min:float=-1., x_max:float=1., y_min:float=-1., y_max:float=1., num_points:int=50):
     """
     Create a 3D losscape of the given model.
 
@@ -78,6 +79,7 @@ def create_3D_losscape(model, train_loader_unshuffled=None, get_batch=None, dire
     train_loader_unshuffled : the torch dataloader. It is supposed to be fixed so that all the calls to this function will use the same data.
     optimizer : the optimizer used for training (should follow the same API as torch optimizers).(default to Adam)
     criterion : the criterion used to compute the loss. (default to F.cross_entropy)
+    closure : an optional closure that will replace the default compute_loss internals
     num_batches : number of batches to evaluate the model with. (default to 8)
     save_only : only save the plot and don't display it. (default to False)
     output_path : path where the plot will be saved. (default to '3d_losscape.png')
@@ -118,7 +120,7 @@ def create_3D_losscape(model, train_loader_unshuffled=None, get_batch=None, dire
         for j in range(X.shape[1]):
             _set_weights(model, init_weights, directions, np.array([X[i, j], Y[i, j]]))
 
-            loss = compute_loss(model, train_loader_unshuffled, get_batch, criterion, num_batches)
+            loss = compute_loss(model, train_loader_unshuffled, get_batch, criterion, num_batches, closure = closure)
             losses[i, j] = loss
 
             count += 1
