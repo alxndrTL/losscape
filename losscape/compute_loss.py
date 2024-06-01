@@ -28,7 +28,17 @@ def compute_loss(model, train_loader_unshuffled, get_batch, criterion = F.cross_
 
     if train_loader_unshuffled is not None:
         with torch.no_grad():
-            loss, batch_idx = closure(train_loader_unshuffled,num_batches)
+            if closure is not None:
+                loss, batch_idx = closure(train_loader_unshuffled,num_batches)
+            else:
+                for batch_idx, (Xb, Yb) in enumerate(train_loader_unshuffled):
+                    Xb, Yb = Xb.to(device), Yb.to(device)
+    
+                    logits = model(Xb)
+                    loss += criterion(logits, Yb).item()
+
+                    if batch_idx + 1 >= num_batches:
+                        break
     
         loss = loss / (batch_idx + 1)
     else:
