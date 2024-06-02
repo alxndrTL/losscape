@@ -4,7 +4,7 @@ import torch.nn.functional as F
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
-def compute_loss(model, train_loader_unshuffled, get_batch, criterion = F.cross_entropy, num_batches:int = 8):
+def compute_loss(model, train_loader_unshuffled, get_batch, criterion = F.cross_entropy, num_batches:int = 8,closure = None):
     """
     Compute and return the loss over the first num_batches batches given by the train_loader_unshuffled, using the criterion provided.
 
@@ -14,7 +14,7 @@ def compute_loss(model, train_loader_unshuffled, get_batch, criterion = F.cross_
     train_loader_unshuffled : the torch dataloader. It is supposed to be fixed so that all the calls to this function will use the same data.
     criterion : the criterion used to compute the loss. (default to F.cross_entropy)
     num_batches : number of batches to evaluate the model with. (default to 8)
-
+    closure : An optional closure that can be passed in. This can be used if your model takes non-standard inputs or provides non-standard outputs.
     Returns
     ----------
     loss : loss computed
@@ -28,14 +28,17 @@ def compute_loss(model, train_loader_unshuffled, get_batch, criterion = F.cross_
 
     if train_loader_unshuffled is not None:
         with torch.no_grad():
-            for batch_idx, (Xb, Yb) in enumerate(train_loader_unshuffled):
-                Xb, Yb = Xb.to(device), Yb.to(device)
+            if closure is not None:
+                loss, batch_idx = closure(train_loader_unshuffled,num_batches)
+            else:
+                for batch_idx, (Xb, Yb) in enumerate(train_loader_unshuffled):
+                    Xb, Yb = Xb.to(device), Yb.to(device)
+    
+                    logits = model(Xb)
+                    loss += criterion(logits, Yb).item()
 
-                logits = model(Xb)
-                loss += criterion(logits, Yb).item()
-
-                if batch_idx + 1 >= num_batches:
-                    break
+                    if batch_idx + 1 >= num_batches:
+                        break
     
         loss = loss / (batch_idx + 1)
     else:
